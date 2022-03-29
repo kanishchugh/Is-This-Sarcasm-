@@ -25,11 +25,9 @@ class Sarcasm:
         self.model = BernoulliNB()
         self.model.fit(self.X_train,self.y_train)
     
-    def run(self):
+    def run(self, text):
         self.model()
-        user = input("Enter a text: ")
+        user = text
         data = self.cv.transform([user]).toarray()
         output = self.model.predict(data)
-        print(output[0])
-sarcasm = Sarcasm(path='./data/Sarcasm.json')
-sarcasm.run()
+        return output[0]
